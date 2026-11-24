@@ -1,0 +1,13 @@
+flask
+torch
+transformers==4.46.3
+captum
+spacy
+nltk
+pandas
+sentencepiece
+protobuf
+# Optional LLM backends use stdlib urllib only (openai / ollama via env).
+# Set LLM_PROVIDER=template|openai|ollama
+# OPENAI_API_KEY / OPENAI_MODEL / OLLAMA_BASE_URL / OLLAMA_MODEL
+# Saved .pt checkpoints need transformers~=4.46 (RobertaSdpaSelfAttention).
