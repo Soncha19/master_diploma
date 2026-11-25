@@ -13,15 +13,27 @@ Code for the master's project on decision interpretability for an eight-class Me
 ## Layout expected next to this folder
 
 ```
-repo-parent/
-  psycho-emotional-classifier/   # this package
+repo-parent/                      # e.g. MKR_MentalBERT/
+  psycho-emotional-classifier/    # this package
   data/reddit_mental_preprocessed.csv
-  results/mentalbert/mentalbert/mentalbert_full_model.pt
+  results/mentalbert/             # trained checkpoints (local, not in Git)
   results/benchmark/pool.csv
   results/benchmark_mentalbert/
 ```
 
-Weights and CSV results are not part of this Git repository.
+### Weights (`results/mentalbert/`)
+
+Checkpoints stay on disk next to the package; they are not committed to Git (≈418 MB each).
+Download folder: https://drive.google.com/drive/folders/1d07AgFZWjoygsIXkXUvPeZGSM-5fn_YD  
+Place the contents under `results/mentalbert/` so the paths below match.
+
+| File | Role |
+| --- | --- |
+| `results/mentalbert/mentalbert/mentalbert_full_model.pt` | Main fine-tuned MentalBERT (8 classes). Used by `main.py` and `benchmark_xai.py`. |
+| `results/mentalbert/mentalbert_xai_ft/mentalbert_xai_ft_full_model.pt` | Extra epoch from that checkpoint with a shared-word penalty (`finetune_mentalbert_xai.py`). |
+| `results/mentalbert/mentalbert_xai_ownclass/mentalbert_xai_ownclass_full_model.pt` | Same penalty setup with `--exempt-own-class` (class-name tokens for the gold label are not penalized). |
+
+Each of those folders also has Hugging Face-style files (`config.json`, `model.safetensors`, tokenizer).
 
 ## Setup
 
